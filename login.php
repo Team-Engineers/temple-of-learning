@@ -699,18 +699,15 @@ gtag('config', 'AW-680712135');
                  </div>
                  <div class="col-md-auto">
     
-                     <!-- Topbar Language Dropdown Start -->
-                     <div class="d-inline-flex request-btn ml-2">
-                         <a class="btn-theme icon-left bg-white no-shadow d-none d-lg-inline-block align-self-center"
-                             href="payonline.php" role="button" style=""> Enroll Now</a>
-                     </div>
-                     <!-- Topbar Language Dropdown End -->
-    
-                     <div class="d-inline-flex request-btn ml-2">
-                         <a class="btn-theme icon-left bg-white no-shadow d-none d-lg-inline-block align-self-center"
-                             href="#" role="button" data-toggle="modal" data-target="#request_popup">
-                             Connect with us</a>
-                     </div>
+                    <!-- Topbar Language Dropdown End -->
+              <div class="d-inline-flex request-btn ml-2">
+                <a class="btn-theme icon-left btn_getQuote bg-white no-shadow d-none d-lg-inline-block align-self-center" href="https://cuet.testknock.com/" target="_blank">
+                  CUET Ultimate Platform</a>
+              </div>
+              <div class="d-inline-flex request-btn ml-2">
+                <a class="btn-theme icon-left bg-white no-shadow d-none d-lg-inline-block align-self-center" href="#" role="button" data-toggle="modal" data-target="#request_popup">
+                  Connect with us</a>
+              </div>
                  </div>
              </div>
          </div>

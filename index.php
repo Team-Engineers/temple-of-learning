@@ -119,45 +119,7 @@
     }
 
 
-    .btn_getQuote:after {
-      content: '';
-      top: 0;
-      transform: translateX(100%);
-      width: 90%;
-      position: absolute;
-      bottom: 0;
-      z-index: -1;
-      animation: slide 2s infinite;
-      background: -moz-linear-gradient(left, rgb(255 255 255 / 0%) 0%, rgb(255 255 255 / 75%) 50%, rgb(255 255 255 / 0%) 99%, rgb(255 255 255 / 0%) 100%);
-      background: -webkit-linear-gradient(left, rgb(255 255 255 / 0%) 0%, rgb(255 255 255 / 75%) 50%, rgb(255 255 255 / 0%) 99%, rgb(255 255 255 / 0%) 100%);
-      background: -o-linear-gradient(left, rgb(255 255 255 / 0%) 0%, rgb(255 255 255 / 75%) 50%, rgb(255 255 255 / 0%) 99%, rgb(255 255 255 / 0%) 100%);
-      background: -ms-linear-gradient(left, rgb(255 255 255 / 0%) 0%, rgb(255 255 255 / 75%) 50%, rgb(255 255 255 / 0%) 99%, rgb(255 255 255 / 0%) 100%);
-      background: linear-gradient(to right, rgb(255 255 255 / 0%) 0%, rgb(255 255 255 / 75%) 50%, rgb(255 255 255 / 0%) 99%, rgb(255 255 255 / 0%) 100%);
-      z-index: 1;
-      left: 0;
-      border: 0 !important;
-    }
-
-    @keyframes slide {
-      0% {
-        transform: translateX(-100%);
-      }
-
-      100% {
-        transform: translateX(100%);
-      }
-    }
-
-   .btn_getQuote:hover::after {
-      content: '';
-      position: relative;
-    }
-
-   .btn_getQuote {
-      background-color: #ed5940 !important;
-      color: white !important;
-
-    }
+    
   </style>
 
 
@@ -376,21 +338,23 @@
           <div class="row align-items-center">
             <div class="col d-flex">
               <marquee behavior="scroll" direction="left" style="margin-top: 0px;margin-bottom: -19px; font-weight: 600;">
-                <p style=" color:white"><span style="   margin-left: 60px; font-size: 20px;">Enroll Now
-                    for CUET Crash Course </span>
+                <p style=" color:white"><span style="   margin-left: 60px; font-size: 20px;">
+                    Experience the Ultimate CUET Preparation Journey: Access an Interactive Dashboard Featuring Realistic Practice Tests, Dive into 10,000+ Stimulating Questions. Plus, Gain Confidence with Expert Doubt Support from Experienced Mentors. Your Success Starts Here!
+                  </span>
+
                 </p>
               </marquee>
             </div>
             <div class="col-md-auto">
 
               <!-- Topbar Language Dropdown Start -->
-              <div class="d-inline-flex request-btn ml-2">
+              <!-- <div class="d-inline-flex request-btn ml-2">
                 <a class="btn-theme icon-left bg-white no-shadow d-none d-lg-inline-block align-self-center" href="payonline.php" role="button" style=""> Enroll Now</a>
-              </div>
+              </div> -->
               <!-- Topbar Language Dropdown End -->
               <div class="d-inline-flex request-btn ml-2">
-                <a class="btn-theme icon-left btn_getQuote bg-white no-shadow d-none d-lg-inline-block align-self-center" href="https://cuet-alpha.vercel.app/">
-                  CUET Material</a>
+                <a class="btn-theme icon-left btn_getQuote bg-white no-shadow d-none d-lg-inline-block align-self-center" href="https://cuet.testknock.com/" target="_blank">
+                  CUET Ultimate Platform</a>
               </div>
               <div class="d-inline-flex request-btn ml-2">
                 <a class="btn-theme icon-left bg-white no-shadow d-none d-lg-inline-block align-self-center" href="#" role="button" data-toggle="modal" data-target="#request_popup">
@@ -409,6 +373,25 @@
 
   <!-- Main Body Content Start -->
   <main id="body-content">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal Title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            This is your modal content.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
     <!-- Journey Style Start -->
     <section class=" courses-page prep_module bg-scroll counter-bg pos-rel dis-non dis-nnm" style="padding: 60px 0px 0px;">
@@ -419,6 +402,8 @@
           <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
 
 
         </ol>
@@ -435,7 +420,12 @@
           <div class="carousel-item">
             <a href="#"><img class="d-block" src="images/slider/Super - 40.png" alt="First slide" style="width:78%!important;  margin: 0 auto !important;"></a>
           </div>
-
+          <div class="carousel-item">
+            <a href="#"><img class="d-block" src="images/cuet/pop-up9.jpg" alt="First slide" style="width:78%!important;  margin: 0 auto !important;"></a>
+          </div>
+          <div class="carousel-item">
+            <a href="#"><img class="d-block" src="images/cuet/pop-up10.jpg" alt="First slide" style="width:78%!important;  margin: 0 auto !important;"></a>
+          </div>
 
 
           <!-- Fullscreen Slider End -->
@@ -1752,6 +1742,16 @@
       }
     });
   </script>
+  <script>
+    // Function to show the modal
+    function showModal() {
+      $('#exampleModal').modal('show');
+    }
+
+    // Call showModal function every 10 seconds
+    setInterval(showModal, 10000); // 10000 milliseconds = 10 seconds
+  </script>
+
 </body>
 
 
