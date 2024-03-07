@@ -812,7 +812,8 @@ gtag('config', 'AW-680712135');
             <div class="media mb-3">
               <i class="icofont-email mr-3 dis-non"></i>
               <div class="media-body">
-                <div><a href="#">info@templeoflearning.com</a></div>
+                             <div><a href="mailto:info@templeoflearning.in">info@templeoflearning.in</a></div>
+
                 <div class="social-icons text-c fot-icon disp-non-lg">
               <a href="https://www.facebook.com/tol.leadtheway/" target="_blank"><img src="images/facebook.png" style="width: 10px;"></a>
               <a href="https://twitter.com/tolEdu" target="_blank"><img src="images/twitar.png" style="width: 20px;"></a> 
@@ -849,7 +850,8 @@ gtag('config', 'AW-680712135');
                <img src="images/icon/icons8-telephone-30.png" style="width:25px; padding-right: 6px;"> +91- 98100 33495 , 011-45 019 365
             </div>
             <div class="col-sm-4 col-md-4  text-center dis-non cop-f" style="color: #df6321!important;">
-                <img src="images/icon/icons8-gmail-logo-30.png" style="width:25px; padding-right: 6px;">INFO@TEMPLEOFLEARNING.COM
+                           <img src="images/icon/icons8-gmail-logo-30.png" style="width:25px; padding-right: 6px;"><a href = "mailto:info@templeoflearning.in" style = "color : #df6321!important">INFO@TEMPLEOFLEARNING.IN</a>
+
             </div>
         </div>
       </div>
