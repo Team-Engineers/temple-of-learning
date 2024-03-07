@@ -5,7 +5,7 @@ session_start();
 
 
 //check if the user is already logged in
-if(isset($_SESSION['username'])){
+if (isset($_SESSION['username'])) {
 
     header("location: welcome.php");
     exit;
@@ -17,42 +17,39 @@ $username = $password = "";
 $err = "";
 
 // if request method is post
-if($_SERVER['REQUEST_METHOD']== "POST"){
-    if(empty(trim($_POST['username'])) || empty(trim($_POST['password'])))
-    {
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    if (empty(trim($_POST['username'])) || empty(trim($_POST['password']))) {
         // $username_err = "Please enter username + password";
         $err = "Please enter username + password";
+    } else {
+        $username =  trim($_POST['username']);
+        $password =  trim($_POST['password']);
     }
-    else{
-      $username =  trim($_POST['username']);
-      $password =  trim($_POST['password']);
-    }
-if(empty($err)){
-    $sql = "SELECT id, username, password FROM users WHERE username = ?";
-    $stmt = mysqli_prepare($conn , $sql);
-    mysqli_stmt_bind_param($stmt , "s" , $param_username);
-    $param_username = $username;
-    //Try to execute the query
-    if(mysqli_stmt_execute($stmt)){
-      mysqli_stmt_store_result($stmt);
-      if(mysqli_stmt_num_rows($stmt)==1){
-         mysqli_stmt_bind_result($stmt,$id,$username,$hashed_password);
-         if(mysqli_stmt_fetch($stmt)){
-           if(password_verify($password , $hashed_password)){
-             //this means the password is correct. Allow user to login
-             session_start();
-             $_SESSION["username"] = $username;
-             $_SESSION["id"] = $id;
-             $_SESSION["loggedin"] = true;
+    if (empty($err)) {
+        $sql = "SELECT id, username, password FROM users WHERE username = ?";
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "s", $param_username);
+        $param_username = $username;
+        //Try to execute the query
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_store_result($stmt);
+            if (mysqli_stmt_num_rows($stmt) == 1) {
+                mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
+                if (mysqli_stmt_fetch($stmt)) {
+                    if (password_verify($password, $hashed_password)) {
+                        //this means the password is correct. Allow user to login
+                        session_start();
+                        $_SESSION["username"] = $username;
+                        $_SESSION["id"] = $id;
+                        $_SESSION["loggedin"] = true;
 
-             //Redirect user to welcome page
-             header("location: welcome.php");
-           }
-         }
-      }
-   
-  }
-}
+                        //Redirect user to welcome page
+                        header("location: welcome.php");
+                    }
+                }
+            }
+        }
+    }
 }
 
 
@@ -65,19 +62,20 @@ if(empty($err)){
 <html lang="en">
 
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TEMPLE OF LEARNING</title>
-    <meta name="author" content="">  
-     <meta name="title" content="Join tol for DU JAT Coaching, CLAT Entrance preparation, IPMAT Coaching">     
+    <meta name="author" content="">
+    <meta name="title" content="Join tol for DU JAT Coaching, CLAT Entrance preparation, IPMAT Coaching">
     <meta name="description" content="Join India's Leading UG Entrance Institute for CLAT, AILET, DU JAT, IIM IPM, BJMC, HM Entrance Preparation. Registrations open. ">
     <meta name="keywords" content="">
-    
-    <!-- xxx Favicon xxx -->    
+
+    <!-- xxx Favicon xxx -->
     <link rel="shortcut icon" type="image/x-icon" href="images/logo.png">
 
     <!-- Core Css Stylesheets -->
@@ -89,88 +87,99 @@ if(empty($err)){
     <link rel="stylesheet" type="text/css" href="rev-slider/revolution/css/settings.css">
     <link rel="stylesheet" type="text/css" href="rev-slider/revolution/css/layers.css">
     <link rel="stylesheet" type="text/css" href="rev-slider/revolution/css/navigation.css">
-	 
-	</head>
+
+</head>
+
 <body style="margin-block-start: 150px">
 
-  <!-- Page loader Start -->
- 
-  <!-- Page loader End -->
+    <!-- Page loader Start -->
 
-  <!-- Facebook Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'../connect.facebook.net/en_US/fbevents.js');
-fbq('init', '453168211739049');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=453168211739049&amp;ev=PageView&amp;noscript=1"
-/></noscript>
-<!-- End Facebook Pixel Code -->
+    <!-- Page loader End -->
 
-
-
-<!-- Global site tag (gtag.js) - Google Ads: 680712135 -->
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-13136377-2"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-
-function gtag() {
-    dataLayer.push(arguments);
-}
-gtag('js', new Date());
-
-gtag('config', 'UA-13136377-2');
-</script>
+    <!-- Facebook Pixel Code -->
+    <script>
+        ! function(f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function() {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            '../connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '453168211739049');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=453168211739049&amp;ev=PageView&amp;noscript=1" /></noscript>
+    <!-- End Facebook Pixel Code -->
 
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-680712135"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
 
-function gtag() {
-    dataLayer.push(arguments);
-}
-gtag('js', new Date());
+    <!-- Global site tag (gtag.js) - Google Ads: 680712135 -->
 
-gtag('config', 'AW-680712135');
-</script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-13136377-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-<style type="text/css">
-@media(min-width: 100px) and (max-width: 991.99px) {
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
 
-    #mobile_top {
-        display: block !important;
-        width: 100% !important;
-        margin: 0 auto !important;
-        padding: 5px;
-
-    }
-
-    #mobile_top td {
-        width: 50%;
-    }
-
-}
-
-@media (min-width: 1200px){
-.container, .wipad {
-     max-width: 1230px !important;
-}
-}
-</style>
+        gtag('config', 'UA-13136377-2');
+    </script>
 
 
-<!--minen  mine <div class="row" id="mobile_top" style="display: none; background: #103f6b !important; width: 100% !important;">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-680712135"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'AW-680712135');
+    </script>
+
+    <style type="text/css">
+        @media(min-width: 100px) and (max-width: 991.99px) {
+
+            #mobile_top {
+                display: block !important;
+                width: 100% !important;
+                margin: 0 auto !important;
+                padding: 5px;
+
+            }
+
+            #mobile_top td {
+                width: 50%;
+            }
+
+        }
+
+        @media (min-width: 1200px) {
+
+            .container,
+            .wipad {
+                max-width: 1230px !important;
+            }
+        }
+    </style>
+
+
+    <!--minen  mine <div class="row" id="mobile_top" style="display: none; background: #103f6b !important; width: 100% !important;">
 
     <div class="col-6" style="text-align: right;float: right;">
         <a href="payonline.php" role="button" style="">
@@ -193,9 +202,8 @@ gtag('config', 'AW-680712135');
 
 
 
-<header class="fixed-top header-fullpage bordered-nav wow fadeInDowm"
-    style="box-shadow: rgb(204, 204, 204) 2px 2px 3px 1px;">
-    <!-- <div class="top-bar-right d-flex align-items-center text-md-left">
+    <header class="fixed-top header-fullpage bordered-nav wow fadeInDowm" style="box-shadow: rgb(204, 204, 204) 2px 2px 3px 1px;">
+        <!-- <div class="top-bar-right d-flex align-items-center text-md-left">
         <div class="container px-0">
             <div class="row align-items-center">
                 <div class="col d-flex">
@@ -227,26 +235,23 @@ gtag('config', 'AW-680712135');
 
 
 
-    <!-- Main Navigation Start -->
-    <section style="background-color: #fff;">
-        <div class="container wipad">
-            <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm" style="padding-left:0; padding-right:0;">
-                <a href="index.php">
-                    <img src="images/tol.png" class="head-mob-log" style="padding: 8px 0px;">
-                </a>
-                <button type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbars"
-                    aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
-                    style="border-color: rgb(255, 255, 255) !important;">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div id="navbarContent" class="collapse navbar-collapse" style="justify-content: end;">
-                    <ul class="navbar-nav text-right-align" >
-                        <!-- <li class="nav-item"><a href="index.php" class="nav-link font-weight-bold text-uppercase"
+        <!-- Main Navigation Start -->
+        <section style="background-color: #fff;">
+            <div class="container wipad">
+                <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm" style="padding-left:0; padding-right:0;">
+                    <a href="index.php">
+                        <img src="images/tol.png" class="head-mob-log" style="padding: 8px 0px;">
+                    </a>
+                    <button type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" style="border-color: rgb(255, 255, 255) !important;">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div id="navbarContent" class="collapse navbar-collapse" style="justify-content: end;">
+                        <ul class="navbar-nav text-right-align">
+                            <!-- <li class="nav-item"><a href="index.php" class="nav-link font-weight-bold text-uppercase"
                                 style="color: #103f6b !important;">Home</a></li> -->
-                        <li class="nav-item"><a href="about-us.php" class="nav-link font-weight-bold text-uppercase"
-                                style="color: #ed5940 !important;">About</a></li>
-                        <!-- Megamenu-->
-                        <!-- <li class="nav-item dropdown megamenu"><a id="megamneu" href="#" data-toggle="dropdown"
+                            <li class="nav-item"><a href="about-us.php" class="nav-link font-weight-bold text-uppercase" style="color: #ed5940 !important;">About</a></li>
+                            <!-- Megamenu-->
+                            <!-- <li class="nav-item dropdown megamenu"><a id="megamneu" href="#" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false"
                                 class="nav-link dropdown-toggle font-weight-bold text-uppercase"
                                 style="color: #103f6b !important;">PREP MODULES </a>
@@ -350,268 +355,180 @@ gtag('config', 'AW-680712135');
                                 </div>
                             </div>
                         </li> -->
-                        <li class="nav-item dropdown megamenu"><a id="megamneu" href="#" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false"
-                                class="nav-link dropdown-toggle font-weight-bold text-uppercase"
-                                style="color: #ed5940 !important;">COURSES</a>
-                            <div aria-labelledby="megamneu" class="dropdown-menu border-0 p-0 m-0 mx-5">
-                                <div class="container text-right-align">
-                                    <div class="row bg-white rounded-0 m-0 shadow-sm">
-                                        <div class="col-lg-12 col-xl-12">
-                                            <div class="p-2">
-                                                <div class="row">
-                                                    <div class="col-lg-4 mb-2 mt-2">
-                                                        <h6 class="font-weight-bold text-uppercase h6-st">MANAGEMENT
-                                                        </h6>
-                                                        <ul class="list-unstyled">
-    <li class="nav-item itam-st"><a href="CUCET.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> CUCET</a></li>
-    <li class="nav-item itam-st"><a href="university-of-delhi.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> DU JAT</a></li>
-                                                            <li class="nav-item itam-st"><a href="iim-indore.php"
-                                                                    class="nav-link text-small pb-0 li-st "><span
-                                                                        class="dis-non">•</span> IIM Indore, IPM</a>
-                                                            </li>
-                                                            <li class="nav-item itam-st"><a href="iim-rohtal.php"
-                                                                    class="nav-link text-small pb-0 li-st "><span
-                                                                        class="dis-non">•</span> IIM Rohtak, IPM</a>
-                                                            </li>
-   <li class="nav-item itam-st"><a href="iim-bodh-gaya.php"
-     class="nav-link text-small pb-0 li-st "><span
-      class="dis-non">•</span> IIM Bodhgaya, IPM</a>
-    </li>  
-    <li class="nav-item itam-st"><a href="iim-ranchi.php"
-     class="nav-link text-small pb-0 li-st "><span
-      class="dis-non">•</span> IIM Ranchi, IPM</a>
-    </li> 
-     <li class="nav-item itam-st"><a href="iim-jammu.php"
-     class="nav-link text-small pb-0 li-st "><span
-      class="dis-non">•</span> IIM Jammu</a>
-    </li>                                                         
-                                                            <li class="nav-item itam-st"><a href="nmims(npat).php"
-                                                                    class="nav-link text-small pb-0 li-st "><span
-                                                                        class="dis-non">•</span> NMIMS(NPAT)</a></li>
-                                                            <li class="nav-item itam-st"><a href="scm.php"
-                                                                    class="nav-link text-small pb-0 li-st "><span
-                                                                        class="dis-non">•</span> Symbiosis Center for
-                                                                    Management</a></li>
-                                                            <li class="nav-item itam-st"><a href="ip-university.php"
-                                                                    class="nav-link text-small pb-0 li-st "><span
-                                                                        class="dis-non">•</span> Indraprastha
-                                                                    University</a></li>
-                                                            <li class="nav-item itam-st"><a href="christ-university.php"
-                                                                    class="nav-link text-small pb-0 li-st "><span
-                                                                        class="dis-non">•</span> Christ University</a>
-                                                            </li>
-                                                            <li class="nav-item itam-st"><a
-                                                                    href="jamia-millia-university.php"
-                                                                    class="nav-link text-small pb-0 li-st "><span
-                                                                        class="dis-non">•</span> Jamia Millia
-                                                                    University</a></li>
-                                                            <li class="nav-item itam-st"><a
-                                                                    href="st-xaviers-college-mumbai.php"
-                                                                    class="nav-link text-small pb-0 li-st "><span
-                                                                        class="dis-non">•</span> St Xavier’s College,
-                                                                    Mumbai</a></li>
-                                                            <li class="nav-item itam-st"><a
-                                                                    href="devi-ahilya-vishwavidyalaya.php"
-                                                                    class="nav-link text-small pb-0 li-st "><span
-                                                                        class="dis-non">•</span> Others </a></li>
-                                                            
-                                                            
+                            <li class="nav-item dropdown megamenu"><a id="megamneu" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle font-weight-bold text-uppercase" style="color: #ed5940 !important;">COURSES</a>
+                                <div aria-labelledby="megamneu" class="dropdown-menu border-0 p-0 m-0 mx-5">
+                                    <div class="container text-right-align">
+                                        <div class="row bg-white rounded-0 m-0 shadow-sm">
+                                            <div class="col-lg-12 col-xl-12">
+                                                <div class="p-2">
+                                                    <div class="row">
+                                                        <div class="col-lg-4 mb-2 mt-2">
+                                                            <h6 class="font-weight-bold text-uppercase h6-st">MANAGEMENT
+                                                            </h6>
+                                                            <ul class="list-unstyled">
+                                                                <li class="nav-item itam-st"><a href="CUCET.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> CUCET</a></li>
+                                                                <li class="nav-item itam-st"><a href="university-of-delhi.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> DU JAT</a></li>
+                                                                <li class="nav-item itam-st"><a href="iim-indore.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> IIM Indore, IPM</a>
+                                                                </li>
+                                                                <li class="nav-item itam-st"><a href="iim-rohtal.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> IIM Rohtak, IPM</a>
+                                                                </li>
+                                                                <li class="nav-item itam-st"><a href="iim-bodh-gaya.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> IIM Bodhgaya, IPM</a>
+                                                                </li>
+                                                                <li class="nav-item itam-st"><a href="iim-ranchi.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> IIM Ranchi, IPM</a>
+                                                                </li>
+                                                                <li class="nav-item itam-st"><a href="iim-jammu.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> IIM Jammu</a>
+                                                                </li>
+                                                                <li class="nav-item itam-st"><a href="nmims(npat).php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> NMIMS(NPAT)</a></li>
+                                                                <li class="nav-item itam-st"><a href="scm.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> Symbiosis Center for
+                                                                        Management</a></li>
+                                                                <li class="nav-item itam-st"><a href="ip-university.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> Indraprastha
+                                                                        University</a></li>
+                                                                <li class="nav-item itam-st"><a href="christ-university.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> Christ University</a>
+                                                                </li>
+                                                                <li class="nav-item itam-st"><a href="jamia-millia-university.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> Jamia Millia
+                                                                        University</a></li>
+                                                                <li class="nav-item itam-st"><a href="st-xaviers-college-mumbai.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> St Xavier’s College,
+                                                                        Mumbai</a></li>
+                                                                <li class="nav-item itam-st"><a href="devi-ahilya-vishwavidyalaya.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> Others </a></li>
 
-                                                        </ul>
-                                                        <h6 class="font-weight-bold text-uppercase h6-st">Mass
-                                                            Communication </h6>
-                                                        <ul class="list-unstyled">
-                                                            <li class="nav-item itam-st"><a href="ipcw-university.php"
-                                                                    class="nav-link text-small pb-0 li-st "><span
-                                                                        class="dis-non">•</span> IPCW University </a>
-                                                            </li>
-                                                            <li class="nav-item itam-st"><a
-                                                                    href="delhi-university-ba-hons.php"
-                                                                    class="nav-link text-small pb-0 li-st "><span
-                                                                        class="dis-non">•</span> Delhi University
-                                                                    BA(hons)</a></li>
-                                                            <li class="nav-item itam-st"><a
-                                                                    href="ip-university-bjmc.php"
-                                                                    class="nav-link text-small pb-0 li-st "><span
-                                                                        class="dis-non">•</span> IP University
-                                                                    (BJMC)</a></li>
-                                                            <li class="nav-item itam-st"><a
-                                                                    href="symbiosis-institute-of-media.php"
-                                                                    class="nav-link text-small pb-0 li-st "><span
-                                                                        class="dis-non">•</span> SYMBIOSIS INSTITUTE</a>
-                                                            </li>
-                                                            <li class="nav-item itam-st"><a href="sxc-m-bmm.php"
-                                                                    class="nav-link text-small pb-0 li-st "><span
-                                                                        class="dis-non">•</span> St Xavier’s College,
-                                                                    Mumbai</a></li>
-                                                            <li class="nav-item itam-st"><a href="sxc-m-bmm.php"
-                                                                    class="nav-link text-small pb-0 li-st "><span
-                                                                        class="dis-non">•</span> Others</a></li>
 
-                                                        </ul>
+
+                                                            </ul>
+                                                            <h6 class="font-weight-bold text-uppercase h6-st">Mass
+                                                                Communication </h6>
+                                                            <ul class="list-unstyled">
+                                                                <li class="nav-item itam-st"><a href="ipcw-university.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> IPCW University </a>
+                                                                </li>
+                                                                <li class="nav-item itam-st"><a href="delhi-university-ba-hons.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> Delhi University
+                                                                        BA(hons)</a></li>
+                                                                <li class="nav-item itam-st"><a href="ip-university-bjmc.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> IP University
+                                                                        (BJMC)</a></li>
+                                                                <li class="nav-item itam-st"><a href="symbiosis-institute-of-media.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> SYMBIOSIS INSTITUTE</a>
+                                                                </li>
+                                                                <li class="nav-item itam-st"><a href="sxc-m-bmm.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> St Xavier’s College,
+                                                                        Mumbai</a></li>
+                                                                <li class="nav-item itam-st"><a href="sxc-m-bmm.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> Others</a></li>
+
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-lg-4 mb-2 mt-2">
+                                                            <h6 class="font-weight-bold text-uppercase h6-st">LAW</h6>
+                                                            <ul class="list-unstyled">
+                                                                <li class="nav-item itam-st"><a href="clat.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> CLAT</a></li>
+                                                                <li class="nav-item itam-st"><a href="nlud.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> National Law
+                                                                        University, Delhi</a></li>
+                                                                <li class="nav-item itam-st"><a href="ip-university-law.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> IP University Law</a>
+                                                                </li>
+                                                                <li class="nav-item itam-st"><a href="christ-university-law.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> Christ University</a>
+                                                                </li>
+                                                                <li class="nav-item itam-st"><a href="jamia-millia-islamia-law.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> Jamia Millia
+                                                                        Islamia</a></li>
+
+                                                                <li class="nav-item itam-st"><a href="nmims-school-of-law.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> NMIMS - School of
+                                                                        Law</a></li>
+                                                                <li class="nav-item itam-st"><a href="symbiosis-law-college.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> Symbiosis Law
+                                                                        College</a></li>
+                                                                <li class="nav-item itam-st"><a href="symbiosis-law-college.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> Others</a></li>
+
+
+
+
+
+                                                            </ul>
+                                                            <h6 class="font-weight-bold text-uppercase h6-st">Hotel
+                                                                Management</h6>
+                                                            <ul class="list-unstyled">
+                                                                <li class="nav-item itam-st">
+                                                                    <a href="nchmct.php" class="nav-link text-small pb-0 li-st ">
+                                                                        <span class="dis-non">•</span> NCHMCT</a>
+                                                                </li>
+                                                                <li class="nav-item itam-st">
+                                                                    <a href="wgsha-manipal.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> WGSHA, Manipal</a>
+                                                                </li>
+                                                                <li class="nav-item itam-st">
+                                                                    <a href="christ-university-hm.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> Christ University</a>
+                                                                </li>
+                                                                <li class="nav-item itam-st">
+                                                                    <a href="gsiu-hm.php" class="nav-link text-small pb-0 li-st ">
+                                                                        <span class="dis-non">•</span> Gobind Singh IP University</a>
+                                                                </li>
+                                                                <li class="nav-item itam-st">
+                                                                    <a href="ihm-aurangabad.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> IHM , Aurangabad</a>
+                                                                </li>
+                                                                <li class="nav-item itam-st">
+                                                                    <a href="ihm-aurangabad.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> Others</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-lg-4 mb-2 mt-2">
+                                                            <h6 class="font-weight-bold text-uppercase h6-st">Bachelor of
+                                                                Computer Applications</h6>
+                                                            <ul class="list-unstyled">
+                                                                <li class="nav-item itam-st"><a href="ip-university-bca.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> IP University </a></li>
+                                                                <li class="nav-item itam-st"><a href="sic-bca.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> Symbiosis Institute of
+                                                                        Computer</a></li>
+                                                                <li class="nav-item itam-st"><a href="christ-university-bca.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> Christ University</a>
+                                                                </li>
+
+                                                                <li class="nav-item itam-st"><a href="jamia-millia-islamia-bca.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> Jamia Millia
+                                                                        Islamia</a></li>
+
+                                                                <li class="nav-item itam-st"><a href="banaras-hindu-university.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> Others</a></li>
+                                                            </ul>
+                                                            <h6 class="font-weight-bold text-uppercase h6-st">B.Com</h6>
+                                                            <ul class="list-unstyled">
+
+                                                                <li class="nav-item itam-st"><a href="ip-university-b-com.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> IP University</a></li>
+                                                                <li class="nav-item itam-st"><a href="nmims-asmsc-b.com.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> NMIMS (ASMSC)</a></li>
+                                                                <li class="nav-item itam-st"><a href="christ-university-b.com.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> Christ University
+                                                                        B.com</a></li>
+                                                                <li class="nav-item itam-st"><a href="scac-pune-b.com.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> Symbiosis College AC,
+                                                                        Pune</a></li>
+                                                                <li class="nav-item itam-st"><a href="scac-pune-b.com.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> Others</a></li>
+
+
+                                                            </ul>
+
+                                                            <h6 class="font-weight-bold text-uppercase h6-st">PSYCHOLOGY</h6>
+                                                            <ul class="list-unstyled">
+                                                                <li class="nav-item itam-st">
+                                                                    <a href="du-psychology.php" class="nav-link text-small pb-0 li-st ">
+                                                                        <span class="dis-non">•</span> DU (Psychology) </a>
+                                                                </li>
+                                                                <li class="nav-item itam-st">
+                                                                    <a href="christ-university-psychology.php" class="nav-link text-small pb-0 li-st ">
+                                                                        <span class="dis-non">•</span> Christ University (Psychology) </a>
+                                                                </li>
+                                                                <li class="nav-item itam-st">
+                                                                    <a href="jamia-milliaIslamia-university-psychology.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> JamiaMilliaIslamia University (Psychology) </a>
+                                                                </li>
+                                                                <li class="nav-item itam-st">
+                                                                    <a href="banaras-hindu-university-BHU-UET.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> Banaras Hindu University (BHU-UET) </a>
+                                                                </li>
+                                                                <li class="nav-item itam-st">
+                                                                    <a href="mount-carmel-college-psychology.php" class="nav-link text-small pb-0 li-st ">
+                                                                        <span class="dis-non">•</span> Mount Carmel College (Psychology) </a>
+                                                                </li>
+                                                                <li class="nav-item itam-st">
+                                                                    <a href="aligarh-muslim-university-psychology.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> Aligarh Muslim University (Psychology) </a>
+                                                                </li>
+                                                                <li class="nav-item itam-st">
+                                                                    <a href="aligarh-muslim-university-psychology.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> Others</a>
+                                                                </li>
+
+
+                                                            </ul>
+                                                        </div>
+
                                                     </div>
-                                                    <div class="col-lg-4 mb-2 mt-2">
-                                                        <h6 class="font-weight-bold text-uppercase h6-st">LAW</h6>
-                                                        <ul class="list-unstyled">
-                                                            <li class="nav-item itam-st"><a href="clat.php"
-                                                                    class="nav-link text-small pb-0 li-st "><span
-                                                                        class="dis-non">•</span> CLAT</a></li>
-                                                            <li class="nav-item itam-st"><a href="nlud.php"
-                                                                    class="nav-link text-small pb-0 li-st "><span
-                                                                        class="dis-non">•</span> National Law
-                                                                    University, Delhi</a></li>
-                                                            <li class="nav-item itam-st"><a href="ip-university-law.php"
-                                                                    class="nav-link text-small pb-0 li-st "><span
-                                                                        class="dis-non">•</span> IP University Law</a>
-                                                            </li>
-                                                            <li class="nav-item itam-st"><a
-                                                                    href="christ-university-law.php"
-                                                                    class="nav-link text-small pb-0 li-st "><span
-                                                                        class="dis-non">•</span> Christ University</a>
-                                                            </li>
-                                                            <li class="nav-item itam-st"><a
-                                                                    href="jamia-millia-islamia-law.php"
-                                                                    class="nav-link text-small pb-0 li-st "><span
-                                                                        class="dis-non">•</span> Jamia Millia
-                                                                    Islamia</a></li>
-                                                          
-                                                            <li class="nav-item itam-st"><a
-                                                                    href="nmims-school-of-law.php"
-                                                                    class="nav-link text-small pb-0 li-st "><span
-                                                                        class="dis-non">•</span> NMIMS - School of
-                                                                    Law</a></li>
-                                                            <li class="nav-item itam-st"><a
-                                                                    href="symbiosis-law-college.php"
-                                                                    class="nav-link text-small pb-0 li-st "><span
-                                                                        class="dis-non">•</span> Symbiosis Law
-                                                                    College</a></li>
-                                                            <li class="nav-item itam-st"><a
-                                                                    href="symbiosis-law-college.php"
-                                                                    class="nav-link text-small pb-0 li-st "><span
-                                                                        class="dis-non">•</span> Others</a></li>
-                                                            
-                                                        
-                                                           
-
-
-                                                        </ul>
-       <h6 class="font-weight-bold text-uppercase h6-st">Hotel
-                                                            Management</h6>
-        <ul class="list-unstyled">
-          <li class="nav-item itam-st">
-            <a href="nchmct.php"class="nav-link text-small pb-0 li-st ">
-                <span class="dis-non">•</span> NCHMCT</a></li>
-          <li class="nav-item itam-st">
-            <a href="wgsha-manipal.php"class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> WGSHA, Manipal</a></li>
-          <li class="nav-item itam-st">
-            <a href="christ-university-hm.php"class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> Christ University</a>
-          </li>
-          <li class="nav-item itam-st">
-            <a href="gsiu-hm.php"class="nav-link text-small pb-0 li-st ">
-                <span class="dis-non">•</span> Gobind Singh IP University</a></li>
-         <li class="nav-item itam-st">
-            <a href="ihm-aurangabad.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> IHM , Aurangabad</a>
-         </li>
-         <li class="nav-item itam-st">
-            <a href="ihm-aurangabad.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> Others</a>
-         </li>
-         </ul>
-              </div>
-                                                    <div class="col-lg-4 mb-2 mt-2">
-                                                        <h6 class="font-weight-bold text-uppercase h6-st">Bachelor of
-                                                            Computer Applications</h6>
-                                                        <ul class="list-unstyled">
-                                                            <li class="nav-item itam-st"><a href="ip-university-bca.php"
-                                                                    class="nav-link text-small pb-0 li-st "><span
-                                                                        class="dis-non">•</span> IP University </a></li>
-                                                            <li class="nav-item itam-st"><a href="sic-bca.php"
-                                                                    class="nav-link text-small pb-0 li-st "><span
-                                                                        class="dis-non">•</span> Symbiosis Institute of
-                                                                    Computer</a></li>
-                                                            <li class="nav-item itam-st"><a
-                                                                    href="christ-university-bca.php"
-                                                                    class="nav-link text-small pb-0 li-st "><span
-                                                                        class="dis-non">•</span> Christ University</a>
-                                                            </li>
-                                                           
-                                                            <li class="nav-item itam-st"><a
-                                                                    href="jamia-millia-islamia-bca.php"
-                                                                    class="nav-link text-small pb-0 li-st "><span
-                                                                        class="dis-non">•</span> Jamia Millia
-                                                                    Islamia</a></li>
-                                                         
-                                                            <li class="nav-item itam-st"><a
-                                                                    href="banaras-hindu-university.php"
-                                                                    class="nav-link text-small pb-0 li-st "><span
-                                                                        class="dis-non">•</span> Others</a></li>
-                                                        </ul>
-                                                        <h6 class="font-weight-bold text-uppercase h6-st">B.Com</h6>
-                                                        <ul class="list-unstyled">
-                                                          
-                                                            <li class="nav-item itam-st"><a
-                                                                    href="ip-university-b-com.php"
-                                                                    class="nav-link text-small pb-0 li-st "><span
-                                                                        class="dis-non">•</span> IP University</a></li>
-                                                            <li class="nav-item itam-st"><a href="nmims-asmsc-b.com.php"
-                                                                    class="nav-link text-small pb-0 li-st "><span
-                                                                        class="dis-non">•</span> NMIMS (ASMSC)</a></li>
-                                                            <li class="nav-item itam-st"><a
-                                                                    href="christ-university-b.com.php"
-                                                                    class="nav-link text-small pb-0 li-st "><span
-                                                                        class="dis-non">•</span> Christ University
-                                                                    B.com</a></li>
-                                                            <li class="nav-item itam-st"><a href="scac-pune-b.com.php"
-                                                                    class="nav-link text-small pb-0 li-st "><span
-                                                                        class="dis-non">•</span> Symbiosis College AC,
-                                                                    Pune</a></li>
-                                                            <li class="nav-item itam-st"><a href="scac-pune-b.com.php"
-                                                                    class="nav-link text-small pb-0 li-st "><span
-                                                                        class="dis-non">•</span> Others</a></li>
-                                                            
-                                                            
-                                                        </ul>
-                                                    
-           <h6 class="font-weight-bold text-uppercase h6-st">PSYCHOLOGY</h6>
-          <ul class="list-unstyled">
-            <li class="nav-item itam-st">
-            <a href="du-psychology.php"class="nav-link text-small pb-0 li-st ">
-                <span class="dis-non">•</span> DU (Psychology) </a>
-            </li>
-          <li class="nav-item itam-st">
-            <a href="christ-university-psychology.php"class="nav-link text-small pb-0 li-st ">
-                <span class="dis-non">•</span> Christ University (Psychology) </a>
-            </li>
-          <li class="nav-item itam-st">
-            <a href="jamia-milliaIslamia-university-psychology.php"class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> JamiaMilliaIslamia University (Psychology) </a>
-         </li>
-          <li class="nav-item itam-st">
-            <a href="banaras-hindu-university-BHU-UET.php"class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> Banaras Hindu University (BHU-UET) </a>
-          </li>
-          <li class="nav-item itam-st">
-            <a href="mount-carmel-college-psychology.php"class="nav-link text-small pb-0 li-st ">
-                <span class="dis-non">•</span> Mount Carmel College (Psychology) </a>
-         </li>
-         <li class="nav-item itam-st">
-            <a href="aligarh-muslim-university-psychology.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> Aligarh Muslim University (Psychology) </a>
-         </li>
-         <li class="nav-item itam-st">
-            <a href="aligarh-muslim-university-psychology.php" class="nav-link text-small pb-0 li-st "><span class="dis-non">•</span> Others</a>
-         </li>
-        
-        
-         </ul>                                              
-                                                    </div>
-
                                                 </div>
                                             </div>
-                                        </div>
 
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </li>
-                        <!-- <li class="nav-item dropdown megamenu"><a id="megamneu" href="#" data-toggle="dropdown"
+                            </li>
+                            <!-- <li class="nav-item dropdown megamenu"><a id="megamneu" href="#" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false"
                                 class="nav-link dropdown-toggle font-weight-bold text-uppercase"
                                 style="color: #103f6b !important;">Results </a>
@@ -665,92 +582,89 @@ gtag('config', 'AW-680712135');
                                 </div>
                             </div>
                         </li> -->
-      
-                        <!-- <li class="nav-item"><a href="http://guidanceedge.com/"
+
+                            <!-- <li class="nav-item"><a href="http://guidanceedge.com/"
                                 class="nav-link font-weight-bold text-uppercase"
                                 style="color: #103f6b !important;">Blog</a></li> -->
-                        <li class="nav-item"><a href="contact-us.php" class="nav-link font-weight-bold text-uppercase"
-                                style="color: #ed5940 !important;">Contact</a></li>
-                        <!-- <li class="nav-item"><a href="career.php"
+                            <li class="nav-item"><a href="contact-us.php" class="nav-link font-weight-bold text-uppercase" style="color: #ed5940 !important;">Contact</a></li>
+                            <!-- <li class="nav-item"><a href="career.php"
                                 class="nav-link font-weight-bold text-uppercase"
                                 style="color: #103f6b !important;">Career</a></li> -->
-                        <li class="nav-item"><a href="register.php"
-                                class="nav-link font-weight-bold text-uppercase"
-                                style="color: #ed5940 !important;">Register</a></li>
-                        <!-- <li class="nav-item"><a href="partners/index.php"
+                            <li class="nav-item"><a href="register.php" class="nav-link font-weight-bold text-uppercase" style="color: #ed5940 !important;">Register</a></li>
+                            <!-- <li class="nav-item"><a href="partners/index.php"
                                 class="nav-link font-weight-bold text-uppercase"
                                 style="color: #103f6b !important;">Partners</a></li> -->
 
-                                
-                    </ul>
+
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="top-bar-right d-flex align-items-center text-md-left">
+                <div class="container px-0">
+                    <div class="row align-items-center">
+                        <div class="col d-flex">
+                            <marquee behavior="scroll" direction="left" style="margin-top: 0px;margin-bottom: -19px; font-weight: 600;">
+                                <p style=" color:white"><span style="   margin-left: 60px; font-size: 20px;">Enroll Now
+                                        for Crash Course </span>
+                                </p>
+                            </marquee>
+                        </div>
+                        <div class="col-md-auto">
+
+                            <!-- Topbar Language Dropdown End -->
+                            <div class="d-inline-flex request-btn ml-2">
+                                <a class="btn-theme icon-left btn_getQuote bg-white no-shadow d-none d-lg-inline-block align-self-center" href="https://cuet.testknock.com/" target="_blank">
+                                    CUET Ultimate Platform</a>
+                            </div>
+                            <div class="d-inline-flex request-btn ml-2">
+                                <a class="btn-theme icon-left bg-white no-shadow d-none d-lg-inline-block align-self-center" href="#" role="button" data-toggle="modal" data-target="#request_popup">
+                                    Connect with us</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </nav>
-        </div>
-        <div class="top-bar-right d-flex align-items-center text-md-left">
-         <div class="container px-0">
-             <div class="row align-items-center">
-                 <div class="col d-flex">
-                     <marquee behavior="scroll" direction="left"
-                         style="margin-top: 0px;margin-bottom: -19px; font-weight: 600;">
-                         <p style=" color:white"><span style="   margin-left: 60px; font-size: 20px;">Enroll Now
-                                 for Crash Course </span>
-                         </p>
-                     </marquee>
-                 </div>
-                 <div class="col-md-auto">
-    
-                    <!-- Topbar Language Dropdown End -->
-              <div class="d-inline-flex request-btn ml-2">
-                <a class="btn-theme icon-left btn_getQuote bg-white no-shadow d-none d-lg-inline-block align-self-center" href="https://cuet.testknock.com/" target="_blank">
-                  CUET Ultimate Platform</a>
-              </div>
-              <div class="d-inline-flex request-btn ml-2">
-                <a class="btn-theme icon-left bg-white no-shadow d-none d-lg-inline-block align-self-center" href="#" role="button" data-toggle="modal" data-target="#request_popup">
-                  Connect with us</a>
-              </div>
-                 </div>
-             </div>
-         </div>
-     </div>
-    </section>
-    
-    <!-- Main Navigation End -->
-</header> 
+            </div>
+        </section>
 
-<div class="container mt-4">
-<h3>Please Login Here:</h3>
-<hr>
+        <!-- Main Navigation End -->
+    </header>
 
-<form action="" method="post">
-  <div class="form-group">
-    <label for="exampleInputEmail1">Username</label>
-    <input type="username" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Username">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password">
-  </div>
-  <div class="form-group form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-  
+    <div class="container mt-4">
+        <h3>Please Login Here:</h3>
+        <hr>
 
-      <button type="submit"  class="btn btn-primary"><a href="register.php">Register</a></button>
-    
+        <form action="" method="post">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Username</label>
+                <input type="username" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Username">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password">
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
 
 
-</form>
+            <button type="submit" class="btn btn-primary"><a href="register.php">Register</a></button>
 
 
 
-</div>
+        </form>
+
+
+
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
+</body>
+
 </html>
