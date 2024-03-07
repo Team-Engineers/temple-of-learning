@@ -79,6 +79,48 @@
     </script>
 
     <style type="text/css">
+
+
+.btn_getQuote:after {
+	content: '';
+	top: 0;
+	transform: translateX(100%);
+	width: 90%;
+	position: absolute;
+	bottom: 0;
+	z-index: -1;
+	animation: slide 2s infinite;
+	background: -moz-linear-gradient(left, rgb(255 255 255 / 0%) 0%, rgb(255 255 255 / 75%) 50%, rgb(255 255 255 / 0%) 99%, rgb(255 255 255 / 0%) 100%);
+	background: -webkit-linear-gradient(left, rgb(255 255 255 / 0%) 0%, rgb(255 255 255 / 75%) 50%, rgb(255 255 255 / 0%) 99%, rgb(255 255 255 / 0%) 100%);
+	background: -o-linear-gradient(left, rgb(255 255 255 / 0%) 0%, rgb(255 255 255 / 75%) 50%, rgb(255 255 255 / 0%) 99%, rgb(255 255 255 / 0%) 100%);
+	background: -ms-linear-gradient(left, rgb(255 255 255 / 0%) 0%, rgb(255 255 255 / 75%) 50%, rgb(255 255 255 / 0%) 99%, rgb(255 255 255 / 0%) 100%);
+	background: linear-gradient(to right, rgb(255 255 255 / 0%) 0%, rgb(255 255 255 / 75%) 50%, rgb(255 255 255 / 0%) 99%, rgb(255 255 255 / 0%) 100%);
+	z-index: 1;
+	left: 0;
+	border: 0 !important;
+  }
+
+  @keyframes slide {
+	0% {
+	  transform: translateX(-100%);
+	}
+
+	100% {
+	  transform: translateX(100%);
+	}
+  }
+
+ .btn_getQuote:hover::after {
+	content: '';
+	position: relative;
+  }
+
+ .btn_getQuote {
+	background-color: #ed5940 !important;
+	color: white !important;
+
+  }
+
         @media(min-width: 100px) and (max-width: 991.99px) {
 
             #mobile_top {
