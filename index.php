@@ -94,6 +94,48 @@
   </script>
 
   <style type="text/css">
+
+
+.btn_getQuote:after {
+	content: '';
+	top: 0;
+	transform: translateX(100%);
+	width: 90%;
+	position: absolute;
+	bottom: 0;
+	z-index: -1;
+	animation: slide 2s infinite;
+	background: -moz-linear-gradient(left, rgb(255 255 255 / 0%) 0%, rgb(255 255 255 / 75%) 50%, rgb(255 255 255 / 0%) 99%, rgb(255 255 255 / 0%) 100%);
+	background: -webkit-linear-gradient(left, rgb(255 255 255 / 0%) 0%, rgb(255 255 255 / 75%) 50%, rgb(255 255 255 / 0%) 99%, rgb(255 255 255 / 0%) 100%);
+	background: -o-linear-gradient(left, rgb(255 255 255 / 0%) 0%, rgb(255 255 255 / 75%) 50%, rgb(255 255 255 / 0%) 99%, rgb(255 255 255 / 0%) 100%);
+	background: -ms-linear-gradient(left, rgb(255 255 255 / 0%) 0%, rgb(255 255 255 / 75%) 50%, rgb(255 255 255 / 0%) 99%, rgb(255 255 255 / 0%) 100%);
+	background: linear-gradient(to right, rgb(255 255 255 / 0%) 0%, rgb(255 255 255 / 75%) 50%, rgb(255 255 255 / 0%) 99%, rgb(255 255 255 / 0%) 100%);
+	z-index: 1;
+	left: 0;
+	border: 0 !important;
+  }
+
+  @keyframes slide {
+	0% {
+	  transform: translateX(-100%);
+	}
+
+	100% {
+	  transform: translateX(100%);
+	}
+  }
+
+ .btn_getQuote:hover::after {
+	content: '';
+	position: relative;
+  }
+
+ .btn_getQuote {
+	background-color: #ed5940 !important;
+	color: white !important;
+
+  }
+
     @media(min-width: 100px) and (max-width: 991.99px) {
 
       #mobile_top {
@@ -117,9 +159,6 @@
         max-width: 1230px !important;
       }
     }
-
-
-    
   </style>
 
 
@@ -402,8 +441,6 @@
           <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
 
 
         </ol>
@@ -419,12 +456,6 @@
           </div>
           <div class="carousel-item">
             <a href="#"><img class="d-block" src="images/slider/Super - 40.png" alt="First slide" style="width:78%!important;  margin: 0 auto !important;"></a>
-          </div>
-          <div class="carousel-item">
-            <a href="#"><img class="d-block" src="images/cuet/pop-up9.jpg" alt="First slide" style="width:78%!important;  margin: 0 auto !important;"></a>
-          </div>
-          <div class="carousel-item">
-            <a href="#"><img class="d-block" src="images/cuet/pop-up10.jpg" alt="First slide" style="width:78%!important;  margin: 0 auto !important;"></a>
           </div>
 
 
@@ -1108,7 +1139,8 @@
             <div class="media mb-3">
               <i class="icofont-email mr-3 dis-non"></i>
               <div class="media-body">
-                <div><a href="#">info@templeoflearning.com</a></div>
+                <div><a href="mailto:info@templeoflearning.in">info@templeoflearning.in</a></div>
+
                 <div class="social-icons text-c fot-icon disp-non-lg">
                   <a href="https://www.facebook.com/tol.leadtheway/" target="_blank"><img src="images/facebook.png" style="width: 10px;"></a>
                   <a href="https://twitter.com/tolEdu" target="_blank"><img src="images/twitar.png" style="width: 20px;"></a>
@@ -1145,7 +1177,7 @@
             <img src="images/icon/icons8-telephone-30.png" style="width:25px; padding-right: 6px;"> +91- 98100 33495 , 011-45 019 365
           </div>
           <div class="col-sm-4 col-md-4  text-center dis-non cop-f" style="color: #df6321!important;">
-            <img src="images/icon/icons8-gmail-logo-30.png" style="width:25px; padding-right: 6px;">INFO@TEMPLEOFLEARNING.COM
+            <img src="images/icon/icons8-gmail-logo-30.png" style="width:25px; padding-right: 6px;"><a href="mailto:info@templeoflearning.in" style="color : #df6321!important">INFO@TEMPLEOFLEARNING.IN</a>
           </div>
         </div>
       </div>
